@@ -1,0 +1,445 @@
+/* Про адаптив в задании ничего не сказано, посему корректное отображние только от 968px (в идеале от 1730px) */
+html {
+  background-color: #343a40;
+  overflow: auto;
+  margin: 0;
+}
+body {
+  margin: 0;
+  font-family: Trebuchet MS;
+}
+h1 {
+  padding: 0;
+  margin: 0;
+  color: #fbfbfb;
+  display: inline-block;
+}
+input[type=range]:disabled {
+  color: transparent;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 1px solid #fbfbfb;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  background: #4a3e55;
+  cursor: pointer;
+}
+
+/* Тоже самое для Firefox */
+input[type=range]::-moz-range-thumb {
+  border: 1px solid #fbfbfb;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  background: #4a3e55;
+  cursor: pointer;
+}
+
+/* Тоже самое для IE */
+input[type=range]::-ms-thumb {
+  border: 1px solid #fbfbfb;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  background: #4a3e55;
+  cursor: pointer;
+}
+:disabled {
+
+}
+.hide {
+  visibility: hidden!important;
+}
+.no-display {
+  display: none!important;
+}
+.unclickable {
+  pointer-events: none;
+}
+.error {
+  border: 1px solid #ff395c!important;
+}
+div.lightup {
+  background-color: #ffaf39!important;
+}
+.history-turn-number {
+  color: #ff395c;
+}
+.history-turn-name {
+  color: #ffaf39;
+}
+.history-turn-ship {
+  color: #d500ff;
+}
+.custom-submit {
+  cursor: pointer;
+  font-size: 20px;
+  color: #fbfbfb;
+  background-color: #1cbef3;
+  border: 1px solid #1cbef3;
+  height: 34px;
+  vertical-align: bottom;
+  margin-left: -5px;
+  transition: all 0.5s;
+}
+.custom-submit:hover {
+  color: #1cbef3;
+  background-color: #fbfbfb;
+  border-color: #fbfbfb;
+}
+.custom-input {
+  margin-left: 20px;
+  background-color: transparent;
+  border: 1px solid #1cbef3;
+  height: 30px;
+  vertical-align: bottom;
+  color: #fbfbfb;
+  font-size: 20px;
+  padding-left: 5px;
+}
+.custom-input:focus {
+    border: 1px solid #1cbef3;
+    margin-left: 10px 0;
+}
+::placeholder {
+    font-size: 16px;
+    color: #fbfbfb;
+    opacity: 1;
+}
+
+:-ms-input-placeholder {
+    color: #fbfbfb;
+}
+
+::-ms-input-placeholder {
+    color: #fbfbfb;
+}
+.white-text {
+  color: #fbfbfb;
+}
+.header {
+  background-color: #1c2128;
+  margin-bottom: 30px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.footer {
+  background-color: #1c2128;
+  height: 100px;
+  margin-top: 20px;
+  padding: 20px 40px;
+  color: #fbfbfb;
+  box-sizing: border-box;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.page-wrapper {
+  padding-top: 40px;
+  height: 100%;
+  background-color: #20262e;
+  margin: 0;
+}
+.battlefield {
+  width: 400px;
+  height: 400px;
+  border-top: 1px solid #fbfbfb;
+  border-left: 1px solid #fbfbfb;
+}
+.battlefield-wrapper {
+  display: inline-block;
+  padding: 40px;
+  background: url('./images/battlefield-bg.png');
+}
+.turn-info {
+  cursor: help;
+  padding: 12px;
+  animation: turnInfoAnimation linear .3s;
+  animation-iteration-count: 1;
+  border-bottom: 1px solid #fbfbfb;
+}
+@keyframes turnInfoAnimation {
+  0% {
+    opacity:0;
+    transform:  translate(10px,0px);
+  }
+  100% {
+    opacity:1;
+    transform:  translate(0px,0px);
+  }
+}
+.square {
+  height: 40px;
+  width: 40px;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
+  display: inline-block;
+  float: left;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.user-ship-square {
+  background-color: #1cbef3;
+}
+.ai-ship-square {
+  background-color: none;
+}
+.defeated-square {
+  background-image: url('./images/x-defeat-white.png');
+  background-size: cover;
+}
+#ai-battlefield > .defeated-square {
+  background-color: #ff395c;
+}
+.miss-square {
+  background-image: url('./images/miss.png');
+  background-size: cover;
+}
+.checked-square {
+  background: repeating-linear-gradient(
+    -45deg,
+    #c3c3c3,
+    #c3c3c3 5px,
+    transparent 5px,
+    transparent 10px
+    );
+}
+.logo {
+  height: 40px;
+  vertical-align: bottom;
+  margin-right: 15px;
+}
+.memo {
+  margin-top: 40px;
+  height: 400px;
+  width: 450px;
+  display: inline-block;
+  vertical-align: top;
+  border: 1px solid #fbfbfb;
+}
+.memo-span {
+  font-size: 23px;
+  font-weight: bold;
+  color: #fbfbfb;
+  animation: turnInfoAnimation linear .3s;
+  animation-iteration-count: 1;
+}
+.memo-head {
+  background: repeating-linear-gradient(
+    -45deg,
+    #2bcbff33,
+    #2bcbff33 1rem,
+    transparent 1rem,
+    transparent 2rem
+  );
+  width: 450px;
+  padding: 10px;
+  border-bottom: 1px solid #fbfbfb;
+  box-sizing: border-box;
+}
+.memo-body {
+  color: #fbfbfb;
+  overflow: hidden;
+  height: 350px;
+}
+.memo-start-info {
+  padding: 10px;
+  display: inline-block;
+}
+.settings {
+  margin-top: 40px;
+  margin-left: 40px;
+  height: 400px;
+  width: 250px;
+  display: inline-block;
+  vertical-align: top;
+  border: 1px solid #fbfbfb;
+}
+.settings-head {
+  background: repeating-linear-gradient( -45deg, #f2a2ee33 , #f2a2ee33 1rem, transparent 1rem, transparent 2rem );
+  width: 250px;
+  padding: 10px;
+  border-bottom: 1px solid #fbfbfb;
+  box-sizing: border-box;
+}
+.settings-span {
+  font-size: 23px;
+  font-weight: bold;
+  color: #fbfbfb;
+  transition: all 0.5s;
+}
+.settings-body {
+ text-align: center;
+}
+.settings-name {
+  padding: 10px;
+  font-size: 20px;
+  text-align: center;
+  color: #fbfbfb;
+  margin-top: 10px;
+}
+.settings-help {
+  color: #fbfbfb;
+  background: #4a3e554d;
+  padding: 10px 20px;
+  text-align: left;
+  margin-top: 20px;
+}
+.start-button {
+  display: inline-block;
+  border: 1px solid #1cbef3;
+  background: transparent;
+  color: #1cbef3;
+  text-align: center;
+  font-size: 24px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 0 20px;
+}
+.start-button:hover {
+  border: 1px solid #fbfbfb;
+  color: #fbfbfb;
+}
+.refresh-button {
+  display: inline-block;
+  border: 1px solid #1cbef3;
+  background: transparent;
+  color: #1cbef3;
+  text-align: center;
+  font-size: 24px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+.refresh-button:hover {
+  border: 1px solid #fbfbfb;
+  color: #fbfbfb;
+}
+.animated-bg {
+  background-image:
+    repeating-linear-gradient(
+      -45deg,
+      #2bcbff33,
+      #2bcbff33 1rem,
+      transparent 1rem,
+      transparent 2rem
+    );
+  background-size: 200% 200%;
+  animation: barberpole 30s linear infinite;
+}
+@keyframes barberpole {
+  100% {
+    background-position: 100% 100%;
+  }
+}
+.player-name-wrapper {
+  width: 440px;
+  height: 40px;
+  color: #fbfbfb;
+  font-size: 24px;
+  display: inline-block;
+  float: left;
+  padding-left: 40px;
+}
+.clearfix {
+  clear: both;
+}
+#ai-name-wrapper {
+  padding-left: 46px;
+}
+.turn-span {
+  display: inline-block;
+  margin-left: 25px;
+  font-weight: normal;
+  text-decoration: none;
+  padding-left: 5px;
+}
+.turn-span:before {
+  content: '◉';
+  color: #80e05f;
+  padding-right: 5px;
+}
+.player-name {
+  font-weight: bold;
+  border: 1px solid #fbfbfb;
+  padding: 3px 5px;
+  max-width: 200px;
+  overflow: hidden;
+}
+.ai-name {
+  font-weight: bold;
+  border: 1px solid #fbfbfb;
+  padding: 3px 5px;
+}
+@media screen and (max-width: 1440px) {
+  .memo {
+    margin-left: 40px;
+  }
+}
+.blur-filter {
+  filter: blur(8px);
+}
+.popup {
+   position: fixed;
+   z-index: 1;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   background-color: #0003;
+}
+/* Modal Content/Box */
+.popup-content {
+   background-color: #6f6f6f1a;
+   margin: 5% auto; /* 15% from the top and centered */
+   padding: 10px 20px;
+   border: 1px solid #888;
+   width: 300px;
+   height: 500px;
+   text-align: center;
+}
+.popup-text {
+  padding-top: 20px;
+  text-align: center;
+  color: #fbfbfb;
+  font-size: 23px;
+}
+/* The Close Button */
+.close {
+   color: #aaa;
+   float: right;
+   font-size: 28px;
+   font-weight: bold;
+}
+.close:hover,
+.close:focus {
+   color: #1cbef3;
+   text-decoration: none;
+   cursor: pointer;
+}
+.gif-container {
+  text-align: center;
+  max-width: 300px;
+  padding-top: 40px;
+}
+.gif-animation {
+  width: 250px;
+}
+.new-game-button {
+  border: 1px solid #1cbef3;
+  padding: 10px;
+  background: transparent;
+  color: #fbfbfb;
+  font-size: 23px;
+  margin-top: 40px;
+  transition: 0.2s all;
+  cursor: pointer;
+}
+.new-game-button:hover {
+  border: 1px solid #fbfbfb;
+  background: #fbfbfb;
+  color: #1cbef3;
+}
+.copyright {
+  text-align: center;
+  padding: 20px;
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Морской бой</title>
+    <link rel="stylesheet" href="./style.css"/>
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans" rel="stylesheet">
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="./main.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <div class="header">
+        <img class="logo" src="./images/logo.png"></img>
+        <h1>Battleships / Морской бой</h1>
+        <button id="start-btn" onClick="startGame();" class="start-button" title="Start battle!"><i class="fas fa-play"></i></button>
+        <button id="refresh-btn" onClick="refreshBattlefields();" class="refresh-button" title="Refresh battlefield"><i class="fas fa-sync"></i></button>
+        <input id="input-name" class="custom-input" type="text" placeholder="Введите имя игрока" maxlength="25"></input>
+        <button id="name-submit" class="custom-submit" type="submit"><i class="fas fa-check"></i></button>
+      </div>
+      <div class="names-wrapper">
+        <div id="user-name-wrapper" class="player-name-wrapper"><span id="user-player-name" class="player-name">Unknown player</span><span id="user-turn-indicator" class="turn-span hide">Ваш ход</span></div>
+        <div id="ai-name-wrapper" class="player-name-wrapper"><span class="ai-name">AI</span><span id="ai-turn-indicator" class="turn-span hide">Ход противника</span></div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="battlefield-wrapper">
+        <div id="user-battlefield" class="battlefield user-battlefield">
+        </div>
+      </div>
+      <div class="battlefield-wrapper">
+        <div id="ai-battlefield" class="battlefield ai-battlefield">
+        </div>
+      </div>
+      <div class="memo">
+        <div class="memo-head">
+          <span class="memo-span">Информация</span>
+        </div>
+        <div class="memo-body">
+          <span class="memo-start-info">«Морской бой» — игра для двух участников, в которой игроки по очереди называют координаты на неизвестной им карте соперника. Если у соперника по этим координатам имеется корабль (координаты заняты), то корабль или его часть «топится», а попавший получает право сделать ещё один ход. Цель игрока — первым потопить все корабли противника.<br><br>Для начала игры, пожалуйста, введи ваше имя в поле сверху и нажмите кнопку старт.</span>
+        </div>
+      </div>
+      <div class="settings">
+        <div class="settings-head">
+          <span class="settings-span">Настройки</span>
+        </div>
+        <div class="settings-body">
+          <div class="settings-name">Скорость компьютера</div>
+          <input id="speed-range" type="range" min="0" max="3" step="1" value="2">
+          <div class="settings-help">Этот ползунок определяет, сколько времени нужно компьютеру чтобы совершить ход.</div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="copyright">
+          <span>Игра «Морской бой», разработчик - Константин Сумерин</span>
+        </div>
+      </div>
+    </div>
+    <div id="win-popup" class="popup no-display">
+      <div class="popup-content">
+        <span class="close" title="Закрыть" onClick="freezeBattlefield();closePopup('#win-popup');return false;">&times;</span>
+        <div id="win-gif-container" class="gif-container">
+        </div>
+        <div class="popup-text">
+          <span>Поздравляю, вы выиграли!</span>
+        </div>
+        <button id="new-game-btn" onClick="closePopup('#win-popup');refreshBattlefields();startGame();return false;" class="new-game-button" title="Новая игра">Новая игра</button>
+      </div>
+    </div>
+    <div id="lose-popup" class="popup no-display">
+      <div class="popup-content">
+        <span class="close" title="Закрыть" onClick="freezeBattlefield();closePopup('#lose-popup');return false;">&times;</span>
+        <div id="lose-gif-container" class="gif-container">
+        </div>
+        <div class="popup-text">
+          <span>К сожалению, вы проиграли..</span>
+        </div>
+        <button id="new-game-btn" onClick="closePopup('#lose-popup');refreshBattlefields();startGame();return false;" class="new-game-button" title="Новая игра">Новая игра</button>
+      </div>
+    </div>
+  </body>
+</html>
